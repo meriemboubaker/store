@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./screens/Home";
+import Blog from "./screens/Blog";
 import About from "./screens/About";
 import Contact from "./screens/Contact";
 import Button from "react-bootstrap/Button";
@@ -29,19 +30,7 @@ function App() {
 
   
   }
-  useEffect(()=>{axios.get('http://localhost:5000/')
-  .then(response => {  console.log(response.data)})
-},[])
-const sendHello = () => {
-
-  axios.get(`http://localhost:5000/product/5`)
-  .then(function (response) {
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-}
+  
   return (
     <div className="App">
   <h1>data : {data.title}</h1>
@@ -83,7 +72,7 @@ const sendHello = () => {
                 
   />
   <Button onClick={buttonSearch} variant="outline-success">Search</Button>
-  <Button onClick={sendHello} variant="outline-success">send Hello</Button>
+  <Button  variant="outline-success">send Hello</Button>
 
             </Form>
           </Navbar.Collapse>
@@ -93,6 +82,7 @@ const sendHello = () => {
         <Route index path="/*" element={<Home products={table} />}></Route>
         <Route path="/Contact" element={<Contact />}></Route>
         <Route path="/About" element={<About />}></Route>
+        <Route path="/Blog" element={<Blog />}></Route>
         <Route path="/product/:id" element={<Product products={products} />}>
           {" "}
         </Route>

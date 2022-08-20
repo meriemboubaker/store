@@ -1,7 +1,7 @@
 const express = require('express')
-const Blog = require('./user')
+const blogRoutes = require("./routes/blogRoutes")
 const app = express()
-const data = require("./data")
+
 const port = 5000
 const cors = require("cors")
 const mongoose = require("mongoose")
@@ -14,15 +14,13 @@ mongoose.connect(process.env.MONGO).then(
 
 app.use(cors())
 app.use(express.json())
-app.post('/send', (req, res) => {
-  Blog.create({title:"blog"}).then(res=>console.log('accepted'))
-});
+app.use('/blogs',blogRoutes)
 app.get('/product/:id', (req, res) => {
     console.log('Got param:', req.params.id);
     res.send(data.find(elm=>elm.id===req.params.id))
     
 });
-console.log(data)
+
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}`)
 })
