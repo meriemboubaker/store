@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./screens/Home";
-import Blog from "./screens/Blog";
+import Products from "./screens/Products";
 import About from "./screens/About";
 import Contact from "./screens/Contact";
 import Button from "react-bootstrap/Button";
@@ -16,11 +16,14 @@ import { products } from "./data.js";
 import Product from "./screens/product";
 import {useEffect, useState} from "react"
 import axios from "axios"
+import Login from "./screens/login";
+import Signin from "./screens/signin";
 function App() {
   const [search,setSearch]=useState("")
   const  [search2 , setSearch2]=useState("")
   const  [table,setTable]=useState(products)
   const [data , setData] = useState("")
+ 
   useEffect(() => {
     setTable(products.filter(elm=>elm.productName.toLowerCase().includes(search.toLowerCase()))) 
 
@@ -82,10 +85,12 @@ function App() {
         <Route index path="/*" element={<Home products={table} />}></Route>
         <Route path="/Contact" element={<Contact />}></Route>
         <Route path="/About" element={<About />}></Route>
-        <Route path="/Blog" element={<Blog />}></Route>
-        <Route path="/product/:id" element={<Product products={products} />}>
+        <Route path="/products" element={<Products />}></Route>
+        <Route path="/product/:id" element={<Product products={products} />}/>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/signin" element={<Signin/>}></Route>
           {" "}
-        </Route>
+      
       </Routes>
     </div>
   );
